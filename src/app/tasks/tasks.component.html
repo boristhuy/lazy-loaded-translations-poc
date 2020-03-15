@@ -1,1 +1,20 @@
+<div class="tasks">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Tasks</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
+  <div class="tasks__content">
+    <ng-container *ngIf="tasks$ | async as tasks">
+      <mat-list>
+        <ng-container *ngFor="let task of tasks">
+          <mat-list-item>
+            <mat-checkbox>{{task.title}}</mat-checkbox>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
+    </ng-container>
+  </div>
+</div>

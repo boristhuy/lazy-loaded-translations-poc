@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tasks',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];
