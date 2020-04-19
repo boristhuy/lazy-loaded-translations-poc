@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,10 @@ export class AppComponent {
 
   appLoaded = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private translateService: TranslateService) {
+    this.translateService.setDefaultLang('en');
+    this.translateService.use('en');
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (event.url === '/') {

@@ -6,6 +6,13 @@ import {MatListModule} from '@angular/material/list';
 import {TasksService} from './tasks.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/tasks/', '.json');
+}
 
 @NgModule({
   declarations: [TasksComponent],
@@ -14,7 +21,15 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatListModule,
     MatCheckboxModule,
     MatToolbarModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient],
+      },
+      isolate: true
+    })
   ],
   providers: [
     TasksService
